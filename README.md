@@ -11,15 +11,12 @@ caveats:
 
 ## Installation
 
-* `git clone <repository-url>` this repository
-* `cd ember-cli-tree-shake`
-* `npm install`
-* `bower install`
+* `npm install --save-dev ember-cli-tree-shake`
 
 ## Running
 
 * `ember tree-shake`
 
-## Running Tests
+## Contributing
 
 * `npm test`
