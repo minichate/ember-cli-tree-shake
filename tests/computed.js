@@ -100,7 +100,13 @@ describe('Computed Properties', function() {
 
     describe('used computed properties', function() {
       const usedProperties = [
-        'used_in_template'
+        'used_in_template',
+        'used_by_observer',
+        'used_internally',
+        'uses_internal_getter',
+        'alias_bar',
+        'observer_has_side_effects',
+        'used_in_class_name_binding'
       ];
 
       usedProperties.forEach(function(test) {

@@ -33,7 +33,21 @@ Ember.Controller.extend({
 
   used_in_component_argument: Ember.computed.not('foo'),
 
-  plain_function() {
+  used_internally: Ember.computed.alias('foo'),
 
+  uses_internal_getter: Ember.computed('used_internally', () => {
+    return this.get('used_internally');
+  }),
+
+  alias_bar: Ember.computed.alias('bar'),
+
+  computes_length: Ember.computed.alias('alias_bar.length'),
+
+  observer_has_side_effects: Ember.observer('foo', () => {
+    this.set('baz', 'other');
+  }),
+
+  plain_function() {
+    return this.get('uses_internal_getter');
   }
 });
