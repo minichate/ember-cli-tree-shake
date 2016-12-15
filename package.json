@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-tree-shake",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Use tree shaking to discover dead code in your Ember app",
   "directories": {
     "doc": "doc",
