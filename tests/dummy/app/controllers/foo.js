@@ -1,6 +1,8 @@
 import Ember from 'ember';
 
 Ember.Controller.extend({
+  classNameBindings: ['used_in_class_name_binding:foobar'],
+
   foo: true,
 
   bar: [],
@@ -46,6 +48,8 @@ Ember.Controller.extend({
   observer_has_side_effects: Ember.observer('foo', () => {
     this.set('baz', 'other');
   }),
+
+  used_in_class_name_binding: Ember.computed.not('foo'),
 
   plain_function() {
     return this.get('uses_internal_getter');

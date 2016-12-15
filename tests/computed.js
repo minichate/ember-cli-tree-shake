@@ -49,7 +49,8 @@ describe('Computed Properties', function() {
         'used_in_template_condition',
         'used_in_template_condition_body',
         'used_in_partial',
-        'used_in_component_argument'
+        'used_in_component_argument',
+        'used_in_class_name_binding'
       ];
 
       usedProperties.forEach(function(test) {
