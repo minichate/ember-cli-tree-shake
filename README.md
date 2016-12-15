@@ -1,4 +1,4 @@
-# Ember-cli-tree-shake
+# ember-cli-tree-shake
 
 This README outlines the details of collaborating on this Ember addon.
 
@@ -11,17 +11,8 @@ This README outlines the details of collaborating on this Ember addon.
 
 ## Running
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+* `ember tree-shake`
 
 ## Running Tests
 
-* `npm test` (Runs `ember try:each` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+* `npm test`
