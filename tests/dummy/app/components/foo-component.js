@@ -13,5 +13,11 @@ Ember.Component.extend({
 
   observes_used_by_observer: Ember.observer('used_by_observer', () => {}),
 
-  used_in_class_name_binding: Ember.computed('foo', () => {})
+  used_in_class_name_binding: Ember.computed('foo', () => {}),
+
+  used_in_plain_method: Ember.computed.alias('foo'),
+
+  usesInPlainMethod() {
+    this.get('used_in_plain_method');
+  }
 });

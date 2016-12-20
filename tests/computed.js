@@ -107,7 +107,8 @@ describe('Computed Properties', function() {
         'uses_internal_getter',
         'alias_bar',
         'observer_has_side_effects',
-        'used_in_class_name_binding'
+        'used_in_class_name_binding',
+        'used_in_plain_method'
       ];
 
       usedProperties.forEach(function(test) {
