@@ -3,6 +3,9 @@ var chai = require('chai'), expect = chai.expect
 var cst = require('cst');
 var fs = require('fs');
 
+chai.should();
+chai.use(require('chai-things'));
+
 describe('Computed Properties', function() {
   before('setUp Parser', function() {
     this.treePaths = {
@@ -34,10 +37,15 @@ describe('Computed Properties', function() {
 
       unusedProperties.forEach(function(test) {
         it(test, function() {
-          expect(this.possiblyDead).to.contain({
-            'name': test,
-            'path': 'tests/dummy/app/controllers/foo.js'
-          });
+          expect(this.possiblyDead).to.contain.an.item.with.property(
+            'name',
+            test
+          );
+
+          expect(this.possiblyDead).to.contain.an.item.with.property(
+            'path',
+            'tests/dummy/app/controllers/foo.js'
+          );
         });
       });
     });
@@ -93,10 +101,15 @@ describe('Computed Properties', function() {
 
       unusedProperties.forEach(function(test) {
         it(test, function() {
-          expect(this.possiblyDead).to.contain({
-            'name': test,
-            'path': 'tests/dummy/app/components/foo-component.js'
-          });
+          expect(this.possiblyDead).to.contain.an.item.with.property(
+            'name',
+            test
+          );
+
+          expect(this.possiblyDead).to.contain.an.item.with.property(
+            'path',
+            'tests/dummy/app/components/foo-component.js'
+          );
         });
       });
     });
@@ -131,10 +144,10 @@ describe('Computed Properties', function() {
           this.filepath
         ).collect();
 
-        expect(shake2).to.contain({
-          'name': 'unused_by_shake2',
-          'path': 'tests/dummy/app/components/foo-component.js'
-        });
+        expect(shake2).to.contain.an.item.with.property(
+          'name',
+          'unused_by_shake2'
+        );
       });
     });
   });
