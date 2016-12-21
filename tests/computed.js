@@ -73,15 +73,17 @@ describe('Computed Properties', function() {
 
   describe('Components', function() {
     before('setUp Collector', function() {
-      const filepath = 'tests/dummy/app/components/foo-component.js';
-      const code = fs.readFileSync(filepath, 'utf8');
-      const tree = this.parser.parse(code);
+      this.filepath = 'tests/dummy/app/components/foo-component.js';
+      this.code = fs.readFileSync(this.filepath, 'utf8');
+      this.tree = this.parser.parse(this.code);
 
-      this.possiblyDead = new DeadComputedProperties(
-        tree,
+      this.shake1 = new DeadComputedProperties(
+        this.tree,
         this.treePaths,
-        filepath
-      ).collect();
+        this.filepath
+      );
+
+      this.possiblyDead = this.shake1.collect();
     })
 
     describe('unused and possibly dead computed properties', function() {
@@ -117,6 +119,21 @@ describe('Computed Properties', function() {
             'name': test,
             'path': 'tests/dummy/app/components/foo-component.js'
           });
+        });
+      });
+    });
+
+    describe('tree shaking', function() {
+      it('second shake detects new unused', function() {
+        let shake2 = new DeadComputedProperties(
+          this.shake1.tree,
+          this.treePaths,
+          this.filepath
+        ).collect();
+
+        expect(shake2).to.contain({
+          'name': 'unused_by_shake2',
+          'path': 'tests/dummy/app/components/foo-component.js'
         });
       });
     });

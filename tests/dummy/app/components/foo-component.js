@@ -17,6 +17,10 @@ Ember.Component.extend({
 
   used_in_plain_method: Ember.computed.alias('foo'),
 
+  unused_by_shake2: Ember.computed.alias('foo'),
+
+  unused_by_shake1: Ember.computed.alias('unused_by_shake2'),
+
   usesInPlainMethod() {
     this.get('used_in_plain_method');
   }
