@@ -31,10 +31,12 @@
     "ember-addon"
   ],
   "dependencies": {
+    "align-text": "^0.1.4",
     "colors": "^1.1.2",
     "cst": "^0.4.9",
     "fs-walk": "0.0.1",
     "htmlbars": "^0.14.24",
+    "js-beautify": "^1.6.4",
     "mime-types": "^2.1.13",
     "walk": "^2.3.9"
   },
