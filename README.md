@@ -45,6 +45,9 @@ In this case, the "`unused`" property is actually being evaluated in the
 template, and therefor isn't actually dead code. `ember-cli-tree-shake` would
 no longer identify it as such.
 
+Finally, `ember-cli-tree-shake` will do a 2nd, 3rd ... nth pass over the tree
+and keep shaking until no more dead code falls off.
+
 ## Contributing
 
 * `npm test`
