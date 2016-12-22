@@ -12,7 +12,7 @@ describe('Computed Properties', function() {
       'app': 'tests/dummy/app'
     };
     this.parser = new cst.Parser();
-  })
+  });
 
   describe('Controllers', function() {
     before('setUp Collector', function() {
@@ -63,19 +63,19 @@ describe('Computed Properties', function() {
 
       usedProperties.forEach(function(test) {
         it(test, function() {
-          expect(this.possiblyDead).to.not.contain({
-            'name': test,
-            'path': 'tests/dummy/app/controllers/foo.js'
-          });
+          expect(this.possiblyDead).to.not.contain.an.item.with.property(
+            'name',
+            test
+          );
         });
       });
     });
 
     it('plain function not detected', function() {
-      expect(this.possiblyDead).to.not.contain({
-        'name': 'plain_function',
-        'path': 'tests/dummy/app/controllers/foo.js'
-      });
+      expect(this.possiblyDead).to.not.contain.an.item.with.property(
+        'name',
+        'plain_function'
+      );
     });
   });
 
@@ -92,7 +92,7 @@ describe('Computed Properties', function() {
       );
 
       this.possiblyDead = this.shake1.collect();
-    })
+    });
 
     describe('unused and possibly dead computed properties', function() {
       const unusedProperties = [
@@ -128,10 +128,10 @@ describe('Computed Properties', function() {
 
       usedProperties.forEach(function(test) {
         it(test, function() {
-          expect(this.possiblyDead).to.not.contain({
-            'name': test,
-            'path': 'tests/dummy/app/components/foo-component.js'
-          });
+          expect(this.possiblyDead).to.not.contain.an.item.with.property(
+            'name',
+            test
+          );
         });
       });
     });
@@ -149,6 +149,41 @@ describe('Computed Properties', function() {
           'unused_by_shake2'
         );
       });
+    });
+  });
+
+  describe('Sub Components', function() {
+    before('setUp Collector', function() {
+      this.filepath = 'tests/dummy/app/components/subfolder/sub.js';
+      this.code = fs.readFileSync(this.filepath, 'utf8');
+      this.tree = this.parser.parse(this.code);
+
+      this.shake1 = new DeadComputedProperties(
+        this.tree,
+        this.treePaths,
+        this.filepath
+      );
+
+      this.possiblyDead = this.shake1.collect();
+    });
+
+    it('unused', function() {
+      expect(this.possiblyDead).to.contain.an.item.with.property(
+        'name',
+        'unused'
+      );
+
+      expect(this.possiblyDead).to.contain.an.item.with.property(
+        'path',
+        'tests/dummy/app/components/subfolder/sub.js'
+      );
+    });
+
+    it('used in template', function() {
+      expect(this.possiblyDead).to.not.contain.an.item.with.property(
+        'name',
+        'used_in_template'
+      );
     });
   });
 });
